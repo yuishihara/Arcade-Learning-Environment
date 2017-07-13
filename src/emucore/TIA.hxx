@@ -1,8 +1,8 @@
 //============================================================================
 //
-//   SSSS    tt          lll  lll       
-//  SS  SS   tt           ll   ll        
-//  SS     tttttt  eeee   ll   ll   aaaa 
+//   SSSS    tt          lll  lll
+//  SS  SS   tt           ll   ll
+//  SS     tttttt  eeee   ll   ll   aaaa
 //   SSSS    tt   ee  ee  ll   ll      aa
 //      SS   tt   eeeeee  ll   ll   aaaaa  --  "An Atari 2600 VCS Emulator"
 //  SS  SS   tt   ee      ll   ll  aa  aa
@@ -31,12 +31,12 @@ class Settings;
 #include "MediaSrc.hxx"
 
 /**
-  This class is a device that emulates the Television Interface Adapator 
-  found in the Atari 2600 and 7800 consoles.  The Television Interface 
-  Adapator is an integrated circuit designed to interface between an 
-  eight bit microprocessor and a television video modulator. It converts 
-  eight bit parallel data into serial outputs for the color, luminosity, 
-  and composite sync required by a video modulator.  
+  This class is a device that emulates the Television Interface Adapator
+  found in the Atari 2600 and 7800 consoles.  The Television Interface
+  Adapator is an integrated circuit designed to interface between an
+  eight bit microprocessor and a television video modulator. It converts
+  eight bit parallel data into serial outputs for the color, luminosity,
+  and composite sync required by a video modulator.
 
   This class outputs the serial data into a frame buffer which can then
   be displayed on screen.
@@ -56,7 +56,7 @@ class TIA : public Device , public MediaSource
       @param settings The settings object for this TIA device
     */
     TIA(const Console& console, Settings& settings);
- 
+
     /**
       Destructor
     */
@@ -258,7 +258,7 @@ class TIA : public Device , public MediaSource
   private:
     // Update the current frame buffer up to one scanline
     void updateFrameScanline(uInt32 clocksToUpdate, uInt32 hpos);
-   
+
     // Update the current frame buffer to the specified color clock
     void updateFrame(Int32 clock);
 
@@ -313,7 +313,7 @@ class TIA : public Device , public MediaSource
     // Indicates where the scanline should start being displayed
     uInt32 myFrameXStart;
 
-    // Indicates the width of the scanline 
+    // Indicates the width of the scanline
     uInt32 myFrameWidth;
 
     // Indicated what scanline the frame should start being drawn at
@@ -349,8 +349,8 @@ class TIA : public Device , public MediaSource
     // Indicates color clocks when the frame was last updated
     Int32 myClockAtLastUpdate;
 
-    // Indicates how many color clocks remain until the end of 
-    // current scanline.  This value is valid during the 
+    // Indicates how many color clocks remain until the end of
+    // current scanline.  This value is valid during the
     // displayed portion of the frame.
     Int32 myClocksToEndOfScanLine;
 
@@ -365,7 +365,7 @@ class TIA : public Device , public MediaSource
 
   private:
     // Color clock when VSYNC ending causes a new frame to be started
-    Int32 myVSYNCFinishClock; 
+    Int32 myVSYNCFinishClock;
 
   private:
     enum
@@ -408,7 +408,7 @@ class TIA : public Device , public MediaSource
 
     uInt8 myGRP0;         // Player 0 graphics register
     uInt8 myGRP1;         // Player 1 graphics register
-    
+
     uInt8 myDGRP0;        // Player 0 delayed graphics register
     uInt8 myDGRP1;        // Player 1 delayed graphics register
 
@@ -433,7 +433,7 @@ class TIA : public Device , public MediaSource
 
     uInt16 myCollision;    // Collision register
 
-    // Note that these position registers contain the color clock 
+    // Note that these position registers contain the color clock
     // on which the object's serial output should begin (0 to 159)
     Int16 myPOSP0;         // Player 0 position register
     Int16 myPOSP1;         // Player 1 position register
@@ -500,7 +500,7 @@ class TIA : public Device , public MediaSource
     // TIA M0 "bug" used for stars in Cosmic Ark flag
     bool myM0CosmicArkMotionEnabled;
 
-    // Counter used for TIA M0 "bug" 
+    // Counter used for TIA M0 "bug"
     uInt32 myM0CosmicArkCounter;
 
     // Answers whether specified bits (from TIABit) are enabled or disabled
@@ -511,21 +511,21 @@ class TIA : public Device , public MediaSource
 
   private:
     // Ball mask table (entries are true or false)
-    static uInt8 ourBallMaskTable[4][4][320];
+    uInt8 ourBallMaskTable[4][4][320];
 
     // Used to set the collision register to the correct value
-    static uInt16 ourCollisionTable[64];
+    uInt16 ourCollisionTable[64];
 
     // A mask table which can be used when an object is disabled
-    static uInt8 ourDisabledMaskTable[640];
+    uInt8 ourDisabledMaskTable[640];
 
     // Indicates the update delay associated with poking at a TIA address
     static const Int16 ourPokeDelayTable[64];
 
     // Missle mask table (entries are true or false)
-    static uInt8 ourMissleMaskTable[4][8][4][320];
+    uInt8 ourMissleMaskTable[4][8][4][320];
 
-    // Used to convert value written in a motion register into 
+    // Used to convert value written in a motion register into
     // its internal representation
     static const Int32 ourCompleteMotionTable[76][16];
 
@@ -533,16 +533,16 @@ class TIA : public Device , public MediaSource
     static const bool ourHMOVEBlankEnableCycles[76];
 
     // Player mask table
-    static uInt8 ourPlayerMaskTable[4][2][8][320];
+    uInt8 ourPlayerMaskTable[4][2][8][320];
 
     // Indicates if player is being reset during delay, display or other times
-    static Int8 ourPlayerPositionResetWhenTable[8][160][160];
+    Int8 ourPlayerPositionResetWhenTable[8][160][160];
 
     // Used to reflect a players graphics
-    static uInt8 ourPlayerReflectTable[256];
+    uInt8 ourPlayerReflectTable[256];
 
     // Playfield mask table for reflected and non-reflected playfields
-    static uInt32 ourPlayfieldTable[2][160];
+    uInt32 ourPlayfieldTable[2][160];
 
   private:
     // Copy constructor isn't supported by this class so make it private
@@ -554,8 +554,8 @@ class TIA : public Device , public MediaSource
   /** ALE-specific */
   private:
     bool fastUpdate;
-   
-    // Updates the frame's scanline but not the frame buffer 
+
+    // Updates the frame's scanline but not the frame buffer
     void updateFrameScanlineFast(uInt32 clocksToUpdate, uInt32 hpos);
 
 };
